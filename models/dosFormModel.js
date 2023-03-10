@@ -1,7 +1,7 @@
-const mongoose = require("mongoose"); // Erase if already required
+const mongoose = require('mongoose') // Erase if already required
 
 // Declare the Schema of the Mongo model
-var prodcategorySchema = new mongoose.Schema(
+var dosFormSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -13,7 +13,7 @@ var prodcategorySchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-);
+)
 
 //Export the model
-module.exports = mongoose.model("PCategory", prodcategorySchema);
+module.exports = mongoose.model('DosageForm', dosFormSchema)

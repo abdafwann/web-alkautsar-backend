@@ -1,10 +1,11 @@
-const cloudinary = require("cloudinary");
+const cloudinary = require('cloudinary')
 
+//configure cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
   api_secret: process.env.SECRET_KEY,
-});
+})
 
 const cloudinaryUploadImg = async (fileToUploads) => {
   return new Promise((resolve) => {
@@ -16,12 +17,12 @@ const cloudinaryUploadImg = async (fileToUploads) => {
           public_id: result.public_id,
         },
         {
-          resource_type: "auto",
+          resource_type: 'auto',
         }
-      );
-    });
-  });
-};
+      )
+    })
+  })
+}
 const cloudinaryDeleteImg = async (fileToDelete) => {
   return new Promise((resolve) => {
     cloudinary.uploader.destroy(fileToDelete, (result) => {
@@ -32,11 +33,11 @@ const cloudinaryDeleteImg = async (fileToDelete) => {
           public_id: result.public_id,
         },
         {
-          resource_type: "auto",
+          resource_type: 'auto',
         }
-      );
-    });
-  });
-};
+      )
+    })
+  })
+}
 
-module.exports = { cloudinaryUploadImg, cloudinaryDeleteImg };
+module.exports = { cloudinaryUploadImg, cloudinaryDeleteImg }
