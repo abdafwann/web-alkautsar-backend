@@ -28,22 +28,31 @@ const {
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware')
 const router = express.Router()
 
-//reset password token
 router.put('/reset-password/:token', resetPassword)
 
-//user & admin route
+//REGISTER USER
 router.post('/register', createUser)
-router.put('/password', authMiddleware, updatePassword)
-router.post('/login', loginUserCtrl)
+
+//LOGIN ADMIN
 router.post('/admin-login', adminLogin)
-router.post('/forgot-password-token', forgotPasswordToken)
+
+//USER AUTHENTICATION
+router.post('/login', loginUserCtrl) //login functionality
+router.put('/password', authMiddleware, updatePassword) //change password user
+router.post('/forgot-password-token', forgotPasswordToken) //get token for change password functionality
+router.get('/wishlist', authMiddleware, getWishlist) //get user wishlist
+
+//Cart functionality
 router.post('/cart', authMiddleware, userCart)
 router.post('/cart/applycoupon', authMiddleware, applyCoupon)
 router.post('/cart/cash-order', authMiddleware, createOrder)
 router.get('/get-orders', authMiddleware, getOrders)
 router.delete('/empty-cart', authMiddleware, emptyCart)
-router.get('/wishlist', authMiddleware, getWishlist)
+
+//handle refresh token
 router.get('/refresh', handleRefreshToken)
+
+//logout functionality
 router.get('/logout', logout)
 
 //admin authority
